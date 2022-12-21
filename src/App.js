@@ -1,71 +1,56 @@
 import React, { Component } from "react";
-import mostlycloudy from "./img/weather-icons/mostlycloudy.svg"
-import clear from "./img/weather-icons/clear.svg"
+
 
 import "./App.css";
+import Navbar from "./components/Navbar";
+import CurrentWeather from "./components/CurrentWeather";
+import DayWeather from "./components/DayWeather";
+import FakeWeather from './data/FakeWeather.json';
+
+import clear from "./img/weather-icons/clear.svg";
+import mostlycloudy from "./img/weather-icons/mostlycloudy.svg";
+import partlycloudy from "./img/weather-icons/partlycloudy.svg";
+import fog from "./img/weather-icons/fog.svg";
+import cloudy from "./img/weather-icons/cloudy.svg";
+import drizzle from "./img/weather-icons/drizzle.svg";
+import rain from "./img/weather-icons/rain.svg";
+import snow from "./img/weather-icons/snow.svg";
+import storm from "./img/weather-icons/storm.svg";
+
 class App extends Component {
 
 
   render() {
+    const imageSrc = (image) => {
+      switch (image) {
+        case "clouds":
+          return cloudy;
+        case "mostlycloudy":
+          return mostlycloudy;
+        case "partlycloudy":
+          return partlycloudy;
+        case "snow":
+          return snow;
+        case "storm":
+          return storm;
+        case "rain":
+          return rain;
+        case "fog":
+          return fog;
+        case "drizzle":
+          return drizzle;
+        case "clear":
+          return clear
+      }
+    };
     return (
       <div className="app">
-          <nav className="navbar">
-            <input  type="text" id="search_input" placeholder="Type a city name"></input>
-            <button id="search_btn">Find Wheather</button>
-          </nav>
+          <Navbar/>
 
           <main className="content">
-
-            <div class="current_weather">
-              <img src={mostlycloudy} alt="cloudy" />
-              <h2>overcast cloud</h2>
-            
-              <div className="current_weather_info">
-                <p className="current_temperature"><b>Temperature</b> <span>10</span> to <span>11 &#8451;</span></p>
-                <p className="current_humidity"><b>Humidity</b> <span>78%</span> <b>Pressure</b>  <span>1008.48</span></p>
-              </div>
-
-            </div>
-            
-            <div class="day_weather_container">
-                <div class="day_weather_part">
-                  <time>3:00</time>
-                  <img src={mostlycloudy} alt="clear"></img>
-                  <p>8&#8451;</p>
-                </div>
-                
-                <div class="day_weather_part">
-                  <time>6:00</time>
-                  <img src={mostlycloudy} alt="clear"></img>
-                  <p>14&#8451;</p>
-                </div>
-
-                <div class="day_weather_part">
-                  <time>9:00</time>
-                  <img src={clear} alt="clear"></img>
-                  <p>17&#8451;</p>
-                </div>
-
-                <div class="day_weather_part">
-                  <time>12:00</time>
-                  <img src={clear} alt="clear"></img>
-                  <p>18&#8451;</p>
-                </div>
-
-                <div class="day_weather_part">
-                  <time>15:00</time>
-                  <img src={clear} alt="clear"></img>
-                  <p>16&#8451;</p>
-                </div>
-
-                <div class="day_weather_part">
-                  <time>18:00</time>
-                  <img src={mostlycloudy} alt="clear"></img>
-                  <p>13&#8451;</p>
-                </div>
-
-              </div>
-        </main>
+            <CurrentWeather FakeWeatherNow={FakeWeather.list[0]} imageSrc={imageSrc}/>
+            <DayWeather FakeWeather={FakeWeather} imageSrc={imageSrc}/>
+          </main>
       </div>
     );
   }
