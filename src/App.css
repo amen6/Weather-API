@@ -113,3 +113,10 @@
 .day_weather_part img{
     width: 90px;
 }
+
+.error {
+    margin-top: 20px;
+    font-size: 45px;
+    text-align: center;
+    color: #CA0B00;
+}

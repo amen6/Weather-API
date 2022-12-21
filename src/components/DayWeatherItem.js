@@ -5,8 +5,8 @@ class DayWeatherItem extends React.Component {
         return (
             <div className="day_weather_part">
                   <time>{this.props.time.slice(11, 16)}</time>
-                  <img src={this.props.imageSrc(this.props.svg)} alt="Weather Image"></img>
-                  <p>{Math.round(this.props.temp- 273.15)}</p>
+                  <img src={this.props.imageSrc(this.props.svg)} alt="Weather"></img>
+                  <p>{Math.round(this.props.temp )}&#8451;</p>
             </div>
         );
     }
